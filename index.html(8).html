@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>連天線 · 意識內在工程溝通</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:      #1E0810;
+  --wine:     #2E0718;
+  --rose:     #7A1525;
+  --rosegold: #C9857A;
+  --blush:    #E8B8A8;
+  --cream:    #FAF3EC;
+  --mist:     #F2E8DE;
+  --gold:     #B8844A;
+  --nav-h:    70px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--wine);
+  font-family: 'Noto Serif TC', serif;
+  overflow-x: hidden;
+  }
+
+/* ── NOISE ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ════════════════════════════════
+   NAV — 手機優先
+════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(30,8,16,0.97);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  z-index: 500;
+  border-bottom: 1px solid rgba(200,133,122,0.15);
+}
+
+.nav-logo {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 6px;
+  cursor: pointer;
+}
+.nav-logo span { color: var(--rosegold); }
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(200,133,122,0.9);
+  text-decoration: none;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color .3s;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--rosegold);
+  border-bottom-color: var(--rosegold);
+}
+
+@media (min-width: 768px) {
+  nav { padding: 0 48px; }
+  .nav-links { gap: 36px; }
+}
+
+/* ════════════════════════════════
+   PAGES
+════════════════════════════════ */
+.page { padding-top: var(--nav-h); min-height: 100vh; }
+
+/* ════════════════════════════════
+   HOME PAGE
+════════════════════════════════ */
+.home-hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: calc(-1 * var(--nav-h));
+  padding-top: var(--nav-h);
+}
+
+.home-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(139,42,58,0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 15% 85%, rgba(200,133,122,0.08) 0%, transparent 55%);
+}
+
+.home-rings { position: absolute; top: 44%; left: 50%; transform: translate(-50%,-50%); }
+.h-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(200,133,122,0.15);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  animation: breathe 6s ease-in-out infinite;
+}
+.h-ring:nth-child(1) { width: 100px; height: 100px; }
+.h-ring:nth-child(2) { width: 200px; height: 200px; animation-delay: .5s; border-color: rgba(200,133,122,0.10); }
+.h-ring:nth-child(3) { width: 330px; height: 330px; animation-delay: 1s; border-color: rgba(200,133,122,0.07); }
+.h-ring:nth-child(4) { width: 480px; height: 480px; animation-delay: 1.5s; border-color: rgba(200,133,122,0.04); }
+@keyframes breathe {
+  0%,100% { opacity:.5; transform:translate(-50%,-50%) scale(1); }
+  50% { opacity:1; transform:translate(-50%,-50%) scale(1.02); }
+}
+.h-dot {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--rosegold);
+  box-shadow: 0 0 20px rgba(200,133,122,0.9), 0 0 60px rgba(200,133,122,0.4);
+  animation: dotGlow 3s ease-in-out infinite;
+}
+@keyframes dotGlow {
+  0%,100% { box-shadow: 0 0 20px rgba(200,133,122,0.9),0 0 60px rgba(200,133,122,0.3); }
+  50% { box-shadow: 0 0 30px rgba(200,133,122,1),0 0 90px rgba(200,133,122,0.5); }
+}
+
+.home-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  margin-top: 200px;
+  padding: 0 40px;
+}
+
+.home-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-style: italic; font-weight: 300;
+  letter-spacing: 7px; color: rgba(200,133,122,0.85);
+  margin-bottom: 20px;
+  animation: fadeUp 1s ease both;
+}
+
+.home-title {
+  font-size: clamp(40px, 7vw, 68px);
+  font-weight: 700; color: var(--cream);
+  line-height: 1.3; letter-spacing: 6px;
+  margin-bottom: 10px;
+  animation: fadeUp 1s .1s ease both;
+}
+.home-title .g { color: var(--rosegold); }
+
+.home-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  margin: 18px auto 14px;
+  animation: fadeUp 1s .2s ease both;
+  position: relative;
+}
+
+.home-divider::before {
+  content: '';
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,133,122,0.5));
+}
+
+.home-divider::after {
+  content: '';
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, rgba(200,133,122,0.5), transparent);
+}
+
+.home-divider-dot {
+  width: 7px; height: 7px;
+  background: var(--rosegold);
+  transform: rotate(45deg);
+  margin: 0 10px;
+  box-shadow: 0 0 10px rgba(200,133,122,0.6);
+  flex-shrink: 0;
+}
+
+.home-sub {
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 400; color: rgba(242,228,204,0.92);
+  line-height: 2.3; letter-spacing: 1px;
+  max-width: 580px; margin: 0 auto 40px;
+  animation: fadeUp 1s .3s ease both;
+}
+.home-sub .rose { color: var(--blush); font-weight: 600; }
+
+.home-cta {
+  display: inline-block;
+  padding: 16px 44px;
+  border: 1px solid var(--rosegold);
+  color: var(--rosegold);
+  font-size: 13px; letter-spacing: 4px;
+  font-family: 'Noto Sans TC', sans-serif;
+  cursor: pointer;
+  transition: all .3s;
+  text-transform: uppercase;
+  animation: fadeUp 1s .4s ease both;
+}
+.home-cta:hover { background: var(--rosegold); color: var(--ink); }
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.scroll-hint {
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: fadeUp 1s .6s ease both;
+}
+.scroll-hint span { font-size: 9px; letter-spacing: 4px; color: rgba(200,133,122,0.4); text-transform: uppercase; }
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(180deg, rgba(200,133,122,0.4), transparent); animation: scrollLine 2s ease-in-out infinite; }
+@keyframes scrollLine {
+  0% { transform:scaleY(0); transform-origin:top; }
+  50% { transform:scaleY(1); transform-origin:top; }
+  51% { transform:scaleY(1); transform-origin:bottom; }
+  100% { transform:scaleY(0); transform-origin:bottom; }
+}
+
+/* Home 核心主張 */
+.home-pillars {
+  background: var(--cream);
+  padding: 80px 24px;
+}
+
+.section-eyebrow {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-style: italic; font-weight: 500;
+  letter-spacing: 5px; color: var(--rosegold);
+  margin-bottom: 18px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 600; color: var(--wine);
+  line-height: 1.8; letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.section-divider {
+  display: flex; align-items: center; gap: 16px;
+  max-width: 400px; margin: 0 auto 50px;
+}
+.sd-line { flex:1; height:1px; background: linear-gradient(90deg, transparent, rgba(200,133,122,0.3)); }
+.sd-line.r { background: linear-gradient(90deg, rgba(200,133,122,0.3), transparent); }
+.sd-diamond { width:6px; height:6px; background:var(--rosegold); transform:rotate(45deg); opacity:.8; }
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 28px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.pillar-card {
+  padding: 36px 28px;
+  border: 1px solid rgba(200,133,122,0.2);
+  border-top: 3px solid var(--rosegold);
+  background: rgba(139,42,58,0.02);
+  transition: transform .3s, box-shadow .3s;
+}
+.pillar-card:hover { transform: translateY(-5px); box-shadow: 0 16px 50px rgba(139,42,58,0.1); }
+
+.pillar-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px; font-weight: 300;
+  color: var(--rosegold); opacity: .5;
+  line-height: 1; margin-bottom: 14px;
+}
+.pillar-title { font-size: 21px; font-weight: 700; color: var(--wine); letter-spacing: 2px; margin-bottom: 14px; }
+.pillar-body { font-size: 17px; font-weight: 400; color: var(--rose); line-height: 2.3; }
+
+/* Home 服務預覽 */
+.home-services-preview {
+  background: var(--ink);
+  padding: 80px 24px;
+  text-align: center;
+}
+.home-services-preview .section-eyebrow,
+.home-services-preview .section-title { color: var(--cream); }
+
+.services-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto 50px;
+}
+
+.sp-card {
+  padding: 28px 16px;
+  border: 1px solid rgba(200,133,122,0.25);
+  color: var(--cream);
+  cursor: pointer;
+  transition: background .3s;
+}
+.sp-card:hover { background: rgba(200,133,122,0.1); }
+.sp-card-name { font-size: 19px; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; color: var(--blush); }
+.sp-card-desc { font-size: 15px; color: rgba(242,228,204,0.85); line-height: 2; }
+
+/* Home 名言 */
+.home-quote {
+  background: var(--mist);
+  padding: 80px 28px;
+  text-align: center;
+}
+.big-quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 5vw, 52px);
+  font-style: italic; font-weight: 400;
+  color: var(--wine); line-height: 1.9;
+  max-width: 700px; margin: 0 auto;
+}
+.big-quote-text .hl { color: var(--rose); font-style: normal; font-weight: 600; }
+
+/* ════════════════════════════════
+   ABOUT PAGE
+════════════════════════════════ */
+.about-hero {
+  background: var(--ink);
+  padding: 80px 24px 70px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.about-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 60%, rgba(139,42,58,0.2) 0%, transparent 65%);
+}
+
+.page-hero-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-style: italic; font-weight: 500;
+  letter-spacing: 6px; color: rgba(200,133,122,1);
+  margin-bottom: 16px; position: relative;
+}
+.page-hero-title {
+  font-size: clamp(30px, 5vw, 52px);
+  font-weight: 700; color: var(--cream);
+  letter-spacing: 4px; line-height: 1.6;
+  position: relative; margin-bottom: 20px;
+}
+.page-hero-sub {
+  font-size: 20px; font-weight: 400;
+  color: rgba(242,228,204,0.88);
+  letter-spacing: 2px; position: relative;
+}
+
+.about-body {
+  max-width: 760px; margin: 0 auto;
+  padding: 60px 24px;
+}
+@media (min-width: 768px) {
+  .about-hero { padding: 100px 48px 80px; }
+  .about-body { padding: 80px 40px; }
+}
+
+.about-section { margin-bottom: 70px; }
+
+.about-mark {
+  display: flex; align-items: center; gap: 18px;
+  margin-bottom: 28px;
+}
+.am-line { width: 50px; height: 2px; background: var(--rosegold); opacity: .9; }
+.am-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-style: italic;
+  letter-spacing: 4px; color: var(--rosegold); font-weight: 600;
+}
+
+.about-p {
+  font-size: 20px; font-weight: 400;
+  color: var(--wine); line-height: 2.6;
+  margin-bottom: 22px;
+}
+.about-p .key { color: var(--rose); font-weight: 600; }
+
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 46px);
+  font-style: italic; font-weight: 400;
+  color: var(--wine); line-height: 1.8;
+  padding-left: 28px;
+  border-left: 4px solid var(--rosegold);
+  margin: 40px 0;
+}
+.about-quote .a { color: var(--rose); font-style: normal; font-weight: 600; }
+
+/* Systems */
+.systems {
+  background: var(--ink);
+  padding: 70px 24px;
+}
+.systems-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 24px; max-width: 960px; margin: 0 auto;
+}
+
+/* Flywheel */
+.flywheel {
+  background: var(--cream);
+  padding: 80px 24px;
+}
+.flywheel-wrap {
+  max-width: 900px; margin: 0 auto;
+}
+.flywheel-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 20px;
+}
+.fw-step { padding: 24px 20px; }
+.fw-step.right { text-align: left; }
+.fw-step.left { text-align: right; }
+.fw-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; font-style: italic;
+  letter-spacing: 4px; color: var(--rosegold);
+  margin-bottom: 8px; font-weight: 500;
+}
+.fw-title {
+  font-size: 22px; font-weight: 700;
+  color: var(--wine); letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.fw-title .en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-weight: 500;
+  color: var(--rose); font-size: 18px; margin-left: 6px;
+}
+.fw-desc {
+  font-size: 16px; font-weight: 400;
+  color: var(--rose); line-height: 2.1;
+}
+.fw-center { width: 100%; max-width: 360px; margin: 0 auto; }
+@media (max-width: 700px) {
+  .flywheel-grid { grid-template-columns: 1fr; }
+  .fw-step.right, .fw-step.left { text-align: center; }
+  .fw-center { order: -1; margin-bottom: 10px; }
+}
+.system-card {
+  background: rgba(200,133,122,0.07);
+  border: 1px solid rgba(200,133,122,0.25);
+  padding: 36px 28px;
+}
+.sys-tag {
+  font-size: 13px; letter-spacing: 4px;
+  color: var(--rosegold); text-transform: uppercase;
+  margin-bottom: 14px; font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 500;
+}
+.sys-name {
+  font-size: 25px; font-weight: 700;
+  color: var(--cream); letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.sys-full {
+  font-size: 14px; color: rgba(200,133,122,0.8);
+  letter-spacing: 1px; margin-bottom: 18px;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.sys-desc {
+  font-size: 17px; font-weight: 400;
+  color: rgba(242,228,204,0.88); line-height: 2.3;
+}
+
+/* ════════════════════════════════
+   SERVICES PAGE
+════════════════════════════════ */
+.services-body { max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+@media (min-width: 768px) { .services-body { padding: 80px 40px; } }
+
+.service-item {
+  display: grid; grid-template-columns: 1fr 1.5fr;
+  gap: 48px; margin-bottom: 70px;
+  padding-bottom: 70px;
+  border-bottom: 1px solid rgba(200,133,122,0.15);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .8s, transform .8s;
+}
+.service-item.visible { opacity:1; transform:translateY(0); }
+.service-item:last-child { border-bottom: none; }
+
+.si-left {}
+.si-tag {
+  font-size: 13px; letter-spacing: 4px;
+  color: var(--rosegold); text-transform: uppercase;
+  margin-bottom: 12px; font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 500;
+}
+.si-name {
+  font-size: 30px; font-weight: 700;
+  color: var(--wine); letter-spacing: 2px;
+  margin-bottom: 8px; line-height: 1.4;
+}
+.si-price-sub { font-size: 16px; color: rgba(61,10,30,0.7); letter-spacing: 1px; font-weight: 400; margin-top: 4px; }
+
+.si-cta {
+  display: inline-block; margin-top: 24px;
+  padding: 16px 38px;
+  border: 2px solid var(--rosegold);
+  color: var(--rosegold);
+  font-size: 15px; letter-spacing: 3px;
+  cursor: pointer; transition: all .3s;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.si-cta:hover { background: var(--rosegold); color: var(--ink); }
+
+.si-right {}
+.si-desc {
+  font-size: 19px; font-weight: 400;
+  color: var(--wine); line-height: 2.5;
+  margin-bottom: 22px;
+}
+.si-points { list-style: none; }
+.si-points li {
+  display: flex; gap: 12px; align-items: flex-start;
+  font-size: 17px; color: var(--rose);
+  line-height: 2.1; margin-bottom: 10px;
+  font-weight: 500;
+}
+.si-points li::before { content: '✦'; color: var(--rosegold); flex-shrink: 0; font-size: 12px; margin-top: 5px; }
+
+/* ════════════════════════════════
+   TESTIMONIALS PAGE
+════════════════════════════════ */
+.testimonials-body { max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+@media (min-width: 768px) { .testimonials-body { padding: 80px 40px; } }
+
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  gap: 28px; margin-bottom: 60px;
+}
+
+.t-card {
+  background: var(--mist);
+  border: 1px solid rgba(200,133,122,0.2);
+  border-top: 4px solid var(--rosegold);
+  padding: 32px 28px;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .8s, transform .8s;
+}
+.t-card.visible { opacity:1; transform:translateY(0); }
+.t-meta { display: flex; align-items: center; justify-content: space-between; }
+.t-photo {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--rosegold);
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════
+   BLOG PAGE
+════════════════════════════════ */
+.blog-body { max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+@media (min-width: 768px) { .blog-body { padding: 80px 40px; } }
+
+.blog-grid {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  gap: 32px;
+}
+
+.blog-card {
+  cursor: pointer;
+  border: 1px solid rgba(200,133,122,0.2);
+  overflow: hidden;
+  background: var(--mist);
+  display: flex;
+  flex-direction: column;
+}
+.blog-card:hover { box-shadow: 0 12px 40px rgba(139,42,58,0.12); }
+
+.blog-card-header {
+  background: var(--ink);
+  padding: 36px 28px 28px;
+  position: relative; overflow: hidden;
+  min-height: 150px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.blog-card-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(139,42,58,0.2) 0%, transparent 70%);
+  z-index: 0;
+}
+.bc-cat {
+  font-size: 13px; letter-spacing: 4px;
+  color: var(--rosegold); text-transform: uppercase;
+  margin-bottom: 14px; position: relative; z-index: 1;
+  font-family: 'Noto Sans TC', sans-serif; font-weight: 500;
+}
+.bc-title {
+  font-size: 22px; font-weight: 600;
+  color: var(--cream); line-height: 1.7;
+  position: relative; z-index: 1; letter-spacing: 1px;
+}
+
+.blog-card-body { padding: 26px 28px; background: var(--mist); flex: 1; display: flex; flex-direction: column; }
+.bc-excerpt {
+  font-size: 16px; font-weight: 400;
+  color: var(--rose); line-height: 2.3;
+  margin-bottom: 18px; flex: 1;
+}
+.bc-footer {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.bc-date { font-size: 14px; color: rgba(61,10,30,0.6); letter-spacing: 2px; font-weight: 500; }
+.bc-read {
+  font-size: 13px; color: var(--rosegold);
+  letter-spacing: 2px; text-transform: uppercase;
+  font-family: 'Noto Sans TC', sans-serif; font-weight: 600;
+}
+
+/* ════════════════════════════════
+   CONTACT PAGE
+════════════════════════════════ */
+.contact-body {
+  max-width: 760px; margin: 0 auto;
+  padding: 60px 24px;
+}
+@media (min-width: 768px) { .contact-body { padding: 80px 40px; } }
+
+.contact-intro {
+  font-size: clamp(19px, 3vw, 24px); font-weight: 400;
+  color: var(--wine); line-height: 2.5;
+  margin-bottom: 60px; text-align: center;
+}
+.contact-intro .key { color: var(--rose); font-weight: 600; }
+
+.contact-options {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  gap: 24px; margin-bottom: 60px;
+}
+.contact-opt {
+  text-align: center;
+  padding: 36px 24px;
+  border: 1px solid rgba(200,133,122,0.25);
+  border-top: 4px solid var(--rosegold);
+  transition: transform .3s; cursor: pointer;
+}
+.contact-opt:hover { transform: translateY(-4px); }
+.co-icon { font-size: 36px; margin-bottom: 18px; }
+.co-name { font-size: 19px; font-weight: 700; color: var(--wine); letter-spacing: 2px; margin-bottom: 10px; }
+.co-desc { font-size: 16px; font-weight: 400; color: var(--rose); line-height: 2.2; }
+
+.contact-note {
+  text-align: center;
+  background: rgba(139,42,58,0.04);
+  border: 1px solid rgba(200,133,122,0.25);
+  border-left: 5px solid var(--rosegold);
+  padding: 32px 28px;
+  font-size: 19px; color: var(--wine); line-height: 2.5; font-weight: 400;
+}
+.contact-note .g { color: var(--rose); font-weight: 700; }
+
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
+footer {
+  background: var(--ink);
+  padding: 60px 28px 40px;
+  text-align: center;
+  border-top: 1px solid rgba(200,133,122,0.2);
+}
+.footer-brand {
+  font-size: 26px; font-weight: 700;
+  letter-spacing: 10px; color: var(--cream);
+  margin-bottom: 14px;
+}
+.footer-brand span { color: var(--rosegold); }
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-style: italic;
+  color: rgba(200,133,122,0.88);
+  letter-spacing: 3px; margin-bottom: 32px;
+}
+.footer-links {
+  display: flex; justify-content: center;
+  flex-wrap: wrap; gap: 24px;
+  list-style: none; margin-bottom: 30px;
+}
+.footer-links a {
+  font-size: 14px; letter-spacing: 3px;
+  color: rgba(200,133,122,0.7);
+  cursor: pointer; transition: color .3s;
+  font-family: 'Noto Sans TC', sans-serif; font-weight: 500;
+  text-transform: uppercase;
+}
+.footer-links a:hover { color: var(--rosegold); }
+.footer-copy {
+  font-size: 13px; color: rgba(200,133,122,0.45);
+  letter-spacing: 2px;
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 1;
+  transform: none;
+  transition: opacity .9s ease, transform .9s ease;
+}
+.service-item, .t-card, .blog-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── CONTACT MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(30,8,16,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal-box {
+  background: var(--cream);
+  max-width: 600px;
+  width: 90%;
+  padding: 52px 48px;
+  position: relative;
+  border-top: 4px solid var(--rosegold);
+  animation: modalIn .3s ease;
+}
+@keyframes modalIn {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.modal-close {
+  position: absolute;
+  top: 20px; right: 24px;
+  font-size: 24px;
+  color: var(--rosegold);
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+.modal-close:hover { color: var(--wine); }
+.modal-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; font-style: italic;
+  letter-spacing: 5px;
+  color: var(--rosegold);
+  margin-bottom: 12px;
+}
+.modal-title {
+  font-size: 28px; font-weight: 700;
+  color: var(--wine); letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.modal-sub {
+  font-size: 15px; color: var(--rose);
+  line-height: 2; margin-bottom: 36px;
+}
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.modal-opt {
+  text-align: center;
+  padding: 24px 16px;
+  border: 1px solid rgba(200,133,122,0.25);
+  border-top: 3px solid var(--rosegold);
+}
+.modal-opt-icon { font-size: 28px; margin-bottom: 10px; }
+.modal-opt-name { font-size: 15px; font-weight: 700; color: var(--wine); letter-spacing: 1px; margin-bottom: 6px; }
+.modal-opt-desc { font-size: 13px; color: var(--rose); line-height: 1.8; }
+.modal-note {
+  font-size: 15px; color: var(--wine);
+  line-height: 2.2; text-align: center;
+  padding: 20px 24px;
+  background: rgba(139,42,58,0.04);
+  border-left: 4px solid var(--rosegold);
+}
+.modal-note span { color: var(--rose); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">連<span>天</span>線</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home" class="active">首頁</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">關於我</a></li>
+    <li><a onclick="showPage('services')" id="nav-services">服務</a></li>
+    <li><a onclick="showPage('testimonials')" id="nav-testimonials">見證</a></li>
+    <li><a onclick="showPage('blog')" id="nav-blog">部落格</a></li>
+    <li><a onclick="openContact(event)" id="nav-contact">聯絡</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HOME ══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <section class="home-hero">
+    <div class="home-bg"></div>
+    <div class="home-rings">
+      <div class="h-ring"></div><div class="h-ring"></div>
+      <div class="h-ring"></div><div class="h-ring"></div>
+      <div class="h-dot"></div>
+    </div>
+    <div class="home-content">
+      <div class="home-eyebrow">意識內在工程溝通</div>
+      <div class="home-divider"><div class="home-divider-dot"></div></div>
+      <div class="home-title">連<span class="g">天</span>線</div>
+      <div class="home-sub">
+        你的天線，<br>
+        接收到的是恐懼，還是真相？<br><br>
+        每個人都在接收訊號。<br>
+        有些是創傷，有些是潛意識，<br>
+        有些，是<span class="rose">你真正的自己</span>。
+      </div>
+      <div class="home-cta" onclick="showPage('services')">探索服務方案</div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <section class="home-pillars">
+    <div class="section-eyebrow reveal">我們能幫你做的事</div>
+    <div class="section-title reveal">你不是不夠好<br>你只是還沒看見那段程式碼</div>
+    <div class="section-divider reveal">
+      <div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line r"></div>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card reveal">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">看見</div>
+        <div class="pillar-body">觀察潛意識中的運作模式，看見那段從來沒被正視過的程式碼。</div>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">釋放</div>
+        <div class="pillar-body">釋放限制與舊模式，不是靠意志力壓制，是真正地讓它流動、鬆開。</div>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">回歸</div>
+        <div class="pillar-body">回到內在秩序，讓自由與豐盛自然流入生命，不再追，只是回到完整。</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-services-preview">
+    <div class="section-eyebrow reveal" style="color:rgba(200,133,122,0.8)">服務方案</div>
+    <div class="section-title reveal" style="color:var(--cream);margin-bottom:16px;">從一次對話，到完整轉化</div>
+    <div class="section-divider reveal">
+      <div class="sd-line" style="background:linear-gradient(90deg,transparent,rgba(200,133,122,0.3))"></div>
+      <div class="sd-diamond"></div>
+      <div class="sd-line r" style="background:linear-gradient(90deg,rgba(200,133,122,0.3),transparent)"></div>
+    </div>
+    <div class="services-preview-grid">
+      <div class="sp-card reveal" onclick="showPage('services')">
+        <div class="sp-card-name">個人諮詢</div>
+        <div class="sp-card-desc">一次對話，看見你現在站的位置</div>
+      </div>
+      <div class="sp-card reveal" onclick="showPage('services')">
+        <div class="sp-card-name">小課</div>
+        <div class="sp-card-desc">系統性認識自己的潛意識</div>
+      </div>
+      <div class="sp-card reveal" onclick="showPage('services')">
+        <div class="sp-card-name">大課系列<br>蓮花覺醒</div>
+        <div class="sp-card-desc">四個單元的完整<br>意識轉化旅程</div>
+      </div>
+      <div class="sp-card reveal" onclick="showPage('services')">
+        <div class="sp-card-name">蓮花覺醒系<br>深度整合</div>
+        <div class="sp-card-desc">深層整合<br>重新看懂內在運作</div>
+      </div>
+    </div>
+    <div class="home-cta reveal" onclick="showPage('services')" style="margin-top:10px">查看完整方案</div>
+  </section>
+
+  <section class="home-quote">
+    <div class="big-quote-text reveal">
+      不是更努力，<br>
+      是<span class="hl">看見自己在跑什麼</span>。<br><br>
+      優雅，是<span class="hl">靈魂安靜下來</span>的樣子。
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">連<span>天</span>線</div>
+    <div class="footer-tagline">你不是迷路，你是準備醒來。</div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">首頁</a></li>
+      <li><a onclick="showPage('about')">關於我</a></li>
+      <li><a onclick="showPage('services')">服務</a></li>
+      <li><a onclick="openContact(event)">聯絡</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 連天線 · 意識內在工程溝通</div>
+  </footer>
+</div>
+
+<!-- ══ ABOUT ══════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <section class="about-hero">
+    <div class="page-hero-eyebrow">關於連天線 · About</div>
+    <div class="page-hero-title">連天線</div>
+    <div class="page-hero-sub">不是一個人，是一個空間。</div>
+  </section>
+
+  <div class="about-body">
+    <div class="about-section reveal">
+      <div class="about-mark"><div class="am-line"></div><div class="am-label">我們是誰</div></div>
+      <p class="about-p">我們是一群<span class="key">走過自己的人</span>，然後用這套走法，幫助別人也能看見自己的路。</p>
+      <div class="about-quote">
+        不是事情一直發生。<br>是<span class="a">潛意識編碼，一直在重演</span>。
+      </div>
+      <p class="about-p">連天線不是一個老師，也不是一個課程品牌。<br>它是一個空間——<br>讓那些說不清楚、但一直在影響你的東西，<span class="key">有機會被看見</span>。</p>
+    </div>
+
+    <div class="about-section reveal">
+      <div class="about-mark"><div class="am-line"></div><div class="am-label">我們做的事</div></div>
+      <p class="about-p">每個人都在接收訊號。<br>有些來自童年，有些來自關係，有些來自那些你以為已經忘記的事。</p>
+      <p class="about-p">我們做的，是幫你把那些訊號解碼。<br>不是替你做決定，不是告訴你答案。<br>是陪你看見——<span class="key">那個一直在影響你、但你還沒正視過的地方</span>。</p>
+    </div>
+
+    <div class="about-section reveal">
+      <div class="about-mark"><div class="am-line"></div><div class="am-label">為什麼叫天線</div></div>
+      <p class="about-p">天線本身不發射訊號。<br>它接收，它傳遞，然後讓你自己看見。</p>
+      <p class="about-p" style="font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;color:var(--rose);">我們在這裡做的事，也是這樣。</p>
+    </div>
+  </div>
+
+  <section class="systems">
+    <div class="section-eyebrow reveal" style="color:rgba(200,133,122,0.8);text-align:center;margin-bottom:16px;">Core Systems · 核心系統</div>
+    <div class="section-title reveal" style="color:var(--cream);text-align:center;margin-bottom:16px;">三套工具，從不同的角度切入。<br>不是技術，是路徑。</div>
+    <div class="section-divider reveal" style="margin-bottom:50px;">
+      <div class="sd-line" style="background:linear-gradient(90deg,transparent,rgba(200,133,122,0.3))"></div>
+      <div class="sd-diamond"></div>
+      <div class="sd-line r" style="background:linear-gradient(90deg,rgba(200,133,122,0.3),transparent)"></div>
+    </div>
+    <div class="systems-grid">
+      <div class="system-card reveal">
+        <div class="sys-tag">System 01</div>
+        <div class="sys-name">S.T.A.R.</div>
+        <div class="sys-full">旅程啟動系統</div>
+        <div class="sys-desc">從「全面啟動」開始，開啟整個意識探索的入口。</div>
+      </div>
+      <div class="system-card reveal">
+        <div class="sys-tag">System 02</div>
+        <div class="sys-name">SCIP</div>
+        <div class="sys-full">畫面進入與整合系統</div>
+        <div class="sys-desc">進入內在畫面，透過基因天命的代碼，在場域中進行生成與整合。</div>
+      </div>
+      <div class="system-card reveal">
+        <div class="sys-tag">System 03</div>
+        <div class="sys-name">蓮花覺醒系</div>
+        <div class="sys-full">內在成形系統</div>
+        <div class="sys-desc">從七歲開始，探索那些形成你的創造物從哪裡來。看見內在的意識結構與創造物，在波與粒之間顯影真實狀態。</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flywheel">
+    <div class="section-eyebrow reveal">Transformation Cycle</div>
+    <div class="section-title reveal">品牌專屬的四步轉化飛輪</div>
+    <div class="section-divider reveal" style="margin-bottom:50px;">
+      <div class="sd-line"></div>
+      <div class="sd-diamond"></div>
+      <div class="sd-line r"></div>
+    </div>
+
+    <div class="flywheel-wrap reveal">
+      <div class="flywheel-grid">
+        <div class="fw-step left">
+          <div class="fw-num">Step 04</div>
+          <div class="fw-title">整合<span class="en">Integrate</span></div>
+          <div class="fw-desc">將破碎的模式與受傷的核心<br>重新拼湊，完成療癒。</div>
+        </div>
+        <div class="fw-step right">
+          <div class="fw-num">Step 01</div>
+          <div class="fw-title">看見<span class="en">See</span></div>
+          <div class="fw-desc">透過情感穿透力，接住<br>對方的核心情緒。</div>
+        </div>
+      </div>
+
+      <div class="fw-center">
+        <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+          <defs>
+            <linearGradient id="loopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#C9857A"/>
+              <stop offset="50%" stop-color="#7A1525"/>
+              <stop offset="100%" stop-color="#C9857A"/>
+            </linearGradient>
+          </defs>
+          <path d="M100,110 C100,60 160,60 200,110 C240,160 300,160 300,110 C300,60 240,60 200,110 C160,160 100,160 100,110 Z"
+                fill="none" stroke="url(#loopGrad)" stroke-width="10" stroke-linecap="round"/>
+          <circle cx="200" cy="110" r="5" fill="#C9857A"/>
+        </svg>
+      </div>
+
+      <div class="flywheel-grid">
+        <div class="fw-step left">
+          <div class="fw-num">Step 03</div>
+          <div class="fw-title">解鎖<span class="en">Unlock</span></div>
+          <div class="fw-desc">運用潛意識拆解，向下探問<br>行為背後的真實渴望。</div>
+        </div>
+        <div class="fw-step right">
+          <div class="fw-num">Step 02</div>
+          <div class="fw-title">覺察<span class="en">Aware</span></div>
+          <div class="fw-desc">透過課程結構力，展開<br>15種行為模式地圖。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">連<span>天</span>線</div>
+    <div class="footer-tagline">你不是迷路，你是準備醒來。</div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">首頁</a></li>
+      <li><a onclick="showPage('services')">服務</a></li>
+      <li><a onclick="openContact(event)">聯絡</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 連天線 · 意識內在工程溝通</div>
+  </footer>
+</div>
+
+<!-- ══ SERVICES ══════════════════════════════════════ -->
+<div class="page" id="page-services">
+  <section class="about-hero">
+    <div class="page-hero-eyebrow">Services · 服務方案</div>
+    <div class="page-hero-title">從一次對話，到完整轉化</div>
+    <div class="page-hero-sub">每一個方案，都是回到自己的一步</div>
+  </section>
+
+  <div class="services-body">
+    <div class="service-item">
+      <div class="si-left">
+        <div class="si-tag">Service 01</div>
+        <div class="si-name">個人諮詢</div>
+        <div class="si-price-sub">60–90 分鐘 · 私訊預約</div>
+        <div class="si-cta" onclick="openContact(event)">預約諮詢</div>
+      </div>
+      <div class="si-right">
+        <div class="si-desc">還沒看清楚自己卡在哪，就從這裡開始。<br>一次對話，看見你現在的位置，找到下一步。</div>
+        <ul class="si-points">
+          <li>看見你目前卡住的地方</li>
+          <li>評估適合的方向</li>
+          <li>找到下一步</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-item">
+      <div class="si-left">
+        <div class="si-tag">Service 02</div>
+        <div class="si-name">小課</div>
+        <div class="si-price-sub">系統性課程 · 私訊詢問</div>
+        <div class="si-cta" onclick="openContact(event)">了解更多</div>
+      </div>
+      <div class="si-right">
+        <div class="si-desc">你知道自己有些模式一直在重複，但說不清楚為什麼。<br>小課幫你開始看見那些東西從哪裡來。</div>
+        <ul class="si-points">
+          <li>認識自己的情緒與人格模式</li>
+          <li>理解那些重複情境&amp;迴圈在說什麼</li>
+          <li>課後持續支援</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-item">
+      <div class="si-left">
+        <div class="si-tag">Service 03</div>
+        <div class="si-name">大課系列<br>蓮花覺醒</div>
+        <div class="si-price-sub">四個單元 · 私訊詢問方案</div>
+        <div class="si-cta" onclick="openContact(event)">諮詢方案</div>
+      </div>
+      <div class="si-right">
+        <div class="si-desc">準備好認真面對自己的人，才適合這個。<br>四個單元，一步一步走。不快，但每一步都是真的。</div>
+        <ul class="si-points">
+          <li>單元一 洞察課程</li>
+          <li>單元二 蛻變課程</li>
+          <li>單元三 超越課程</li>
+          <li>單元四 UAP 量子跳躍 跨維工程</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-item">
+      <div class="si-left">
+        <div class="si-tag">Service 04</div>
+        <div class="si-name">客製化<br>深度整合</div>
+        <div class="si-price-sub">私訊詢問</div>
+        <div class="si-cta" onclick="openContact(event)">私訊詢問</div>
+      </div>
+      <div class="si-right">
+        <div class="si-desc">走了一段路，感覺還沒結束。<br>完全根據你的狀態設計，沒有固定流程。</div>
+        <ul class="si-points">
+          <li>私訊說明狀況</li>
+          <li>一起討論適合的方向</li>
+          <li>長期陪伴，不是單次結束</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brand">連<span>天</span>線</div>
+    <div class="footer-tagline">你不是迷路，你是準備醒來。</div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">首頁</a></li>
+      <li><a onclick="showPage('about')">關於我</a></li>
+      <li><a onclick="openContact(event)">聯絡</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 連天線 · 意識內在工程溝通</div>
+  </footer>
+</div>
+
+<!-- ══ TESTIMONIALS ══════════════════════════════════ -->
+<div class="page" id="page-testimonials">
+  <section class="about-hero">
+    <div class="page-hero-eyebrow">Testimonials · 學員見證</div>
+    <div class="page-hero-title">他們說的，比我說的更真實</div>
+    <div class="page-hero-sub">每一個故事，都是真實發生的改變</div>
+  </section>
+
+  <div class="testimonials-body">
+    <div class="testimonials-grid">
+      <div class="t-card">
+        <div class="t-tags" style="color:#8B2942;">大課 · 量子跳躍</div>
+        <div class="t-quote-mark">"</div>
+        <div class="t-text">透過連天線系統的旅程跟技術，原來很多的情緒、關係及選擇都來自深層信念的影響。不再壓抑、逃避，學習覺察、接納，這旅程很有效率地解開情緒卡點。透過覺察與陪伴，<span class="hl">學會回到自己身上，不再急著改變外境，而是先理解自己</span>。感謝這個很有效的系統，帶我走上這段內在探索的旅程，讓我慢慢找回內在自由與力量，也學習到真誠地面對自己與他人。</div>
+        <div class="t-meta">
+          <div><div class="t-name">Sunny</div><div class="t-info">設計師 · 43歲</div></div>
+          <img class="t-photo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCADwAPADASIAAhEBAxEB/8QAHAAAAQUBAQEAAAAAAAAAAAAABAECAwUGBwAI/8QAQxAAAgEDAgMGAggEBAQGAwAAAQIDAAQREiEFMUEGEyJRYXEygQcUQpGhscHwI1Jy0RVi4fEWJDOCCENTg5LCJUSy/8QAGQEAAwEBAQAAAAAAAAAAAAAAAAECAwQF/8QAJREAAgICAgEEAwEBAAAAAAAAAAECEQMhEjFBBBMiUTJCYRRx/9oADAMBAAIRAxEAPwDqgIpDpbaotdLqONqdCIZolOTgZrXdlu0gjjSzvGwg2Rz9n0PpWVY56UkMncyYPI0mhnW87VHKiyoUcZBrJcG7Qy2SrFNmW35D+ZPbzHpWqt7mG7iEsEiyIeo/e1JMBykqUBOdO2TTyDqU4261G4pgZ0+E7eRooVk65ErA8sbUkvPI6bGoxc4OWUj2pRKhY+LGehoHZ5G0zAEfF1qc880NJpIVlIJU0SpyBQA0EayPL8aXnnFLoFNBO9ACABhllFANbWl+0hktoWHwqWQE+9GyNiKTPRTg0PYp/DyepoACu+zfBX0h+G2jHqe7FVTdiOzl5r1cKiUqRujMM5+da3ulDaxs3U+dDzLpYEYJJyQBjNDBMyh+izsvJEHWC4QdSsxoK9+ibgSBRFdXiM5woLA/pW5jUGEqMgf3qvdjLxUKTkRr+YqVFPwPnJeTGN9DlsQ5j4rcIAdtaA6hiq+f6IZwQIeMxnPR4iPyNdW0syAK2PPbOagnhC74bY55im4R+hrJL7OUD6H+MlS0d7ZvvjckfpQk30TdpUPgjtpP6ZR+tdntm0wrnrvU2rfHnUcY/RXuyODS/Rt2ohB//Gs39Dqf1oGfsT2jhyX4Td7eUefyr6IHOlpe3EfvSPmWbgPFYSe94fcpjziagpLKeM+OCRfdSK+pyM86hkt4HB7yKJh11KDR7UR+8/o+WGjIO61GQB0NfS68L4ZfKWl4bZsGY41Qry+6grrsn2bcHvOD2fyjx+Vcc8mOLpstZf4ZZuDXy/8AkE+xqM2V0nxQSfdXQvq56MD8qY1s3LCmvQ5HNo540MifFGw+VQkZOCDXQ5LUHnGpxQ31G3bIeFMn0p8h0ZThswc9253FHwXM9hL3ltIYz1xuD7jrT+PcOW2WO4t00kHB0+dAwXYnTDbN1FT/AEZqbLtVDJhL2MxN/Om6/dzFXMMkN0muGRJF80bNc/bFMSSSF9cUjxt/MjEGmmS0dDZKYUrHwdpeKQDBmWYDpKgP47GjI+2NwP8Aq2ULf0uV/vTsVGj0bil7rB22qjTthASC9nKv9Lg/2ohO1dg+7LcIPVAf1otCplqFZeTt99eywz4zvVRP2q4VHE0j3QjjAyS4IzWL7RfStb2pMdj/ABCRsxH6c/vpSyRXZpDHOXSOjyXKFSjzJjlzFLFcqI8QkOB5b1wWf6TuJSyFzPjyzvj+1H8L+kmbK/WIzuf+qnhHzFZe/E2/yyO2/W5APEvPzprTZZTg5HPG4rL8I7Sx3sSusveoRsxOrHpWgikQoGCEZ6g1pGmtGEotaYctwnVWG3lQNvE4vppZAAjfC2edTJMAd2X0yak1AnYgj0NWtEMke7jhKjDMD1AziopbmOcFUJyOhGKU48q8VyKHVC3YsalAoPLG1TLsMHryNDd35UulxyZvvqKKsLXceVeVs/KhNUw+2a930w6g/KgLDaF4jJ3Vo5BwWwo+ZpoupR9lTUV2zXcQjbCAMGyN84pjsS0AW3j88E/jQl5KSpB2NFCNAqjTkqoXNCXNnJJkx49ixFeRk9Pkcm6NFJFgHpGcE1Dr+VNL+desZEpkB51C6qzeopCxpuTQMjv4PrVrJF1IyPcViriEo5ZdjW4zg1m+KW3dXLgDY+Ie1Ul4Gyqjujyapg4ah5oCMkDamgvGxA3A/GpYBm1eodbgcjUiyDzosdEu3n7VW8W4tFw+37yQ/wBKjm59P70nFuLQ8PgLSHO+AufiPlXM+N9o5+I3LLEBNOzaBgbKeij9/wB6wyZd0jpw4b+UugrjnaC94hOfGB/KoOAn+vrVK1syZkvLnGrfSh3I9TROiLhMPe3MwaQjLOep9B5VQTcZa+nkjsUkbHxykVhGLZ1NqKE4rxiK2OiMBSBtqOPmBz++qQ8Q4ndysytIwAzjOB91WclnJCoDbzykasAYT+59alhij8S6m8fhBH5/fWqiZylY/s/2w4/wgMYJjGpGnUzHbB/Ctrw/6T+06lWmBlhI3kQKwPuef+1Y+34YUlYqmBkHHLJq2ts2g1JgYOCOW3Q/pVURX2dG4V9KN2dIkEbk/wAy8/mK1nD+363eAIYtY20MSPuriEmiTTJCe4dtx/KfQ9M0Rwzjui4W3v1eE5wsiHceoPUelZvJKL7L9mMl0d/h7WKR4rMnGxAk/uKJTtZaH4radfbSf1rmXA+OuJFguGDPp5g5EqdGU9fUcxWmVlkUOpBB3rohk5I48mLgzWp2o4ax3aZPeP8AtUy9oOFSf/uIv9SkfpWMIHlTStaWZ8UbtOJ8Pl+G9tj/AO4BU6SwyfBLG39Lg1zormo+7APIUWHE6UY88gfuppTzrnSvLH8Eki/0uRUycT4jEfBfXI/9wmlYcTfaBXtFYhO0PFo+V47f1Kp/Spk7WcUXmYH/AKo/7U7FxNETlSpPsaUMSozzppPUdK9nOTQJCluVNLU0typpbNMY8NvvVfxiLUiyAbrsfajNVLIizRNG3UUIGZhlxURjyeVGSxFGKsMEHFRFSGG2x2qmhJlfJDlx7jNQ8Qmj4fC8sraVUZGDVtNCE+Ic9q5b9I3adRcvbJLiKBSHwds9TXLmnwidXp8fuS30UHavtZJK+AxMkzBIkHTNJZQpwayWW5Ym7YHI/kzzHz2+6qDs5A99ejjl2MRqGFsjDffm5/Sm8f42Rc4Rthsu/nzNcUduj0XVX4AuM8TuOLcQWzhchmPiIPwrWn4VwiOxt4oogAdOojzxsB+/Osr2Vt3WaW6lGWDAnPTG+PvrV2/ENGHGS3L9f1rsVI5mnINXh4uLuRVw+GCkjqepo6w7NlbdDgZHPlU3AV7uBppBz8QPzrTxRBYldcFdqnl5NOHgzUfBSmY20jO6t6eVV9/w825xLGSpByF5/v8AWtVPC4ifQQpz4cc81Xu8V9ZSRP4XU42+JWo5oPbfRg715+Hq7RMZAu+V31jzx++lNtOOxcRj7m5wrr8Mg5ijeJqVkaJjrdDkHzHP+9YvjUb8PuRcw6gjEMD5HqD+/OpklJAk4nTODcRLRrayyaJYmLQuTkA+Xsa6B2f4x9YjVZDhm6dM/p/f3rinBuJ9/BG5bYjwkcx6f2rdcB4nrbBdsldSnPPz+8b+4rCE3CVMrLBThaOniTIzSFqAtLszwI2RnG/vUjTEf716CkmeY1QSWFNLUMZiaaZyOhp2IK1V4kUKs+aXvx50ATk0mag74UolFAHQD4uY96Qjapmh/hhgdRxvUBODVmaGHzpmDk0/kfemkacY3FAxKdjb1pDSqfOgCvv4Q38UDlswqvkUsuOW4NXpVS+CPCw0mq65tGgcj7PQ1UWS0U/H7v6jwme4kbAjTIPl61809q+JveMqMoaW7ctpzzJOQPXptXaPph4t9S4JDZIcPdOF59Aa4XZuL/tUbpmTubFWZUPMtyBHy6+9efnd5P8Ah6npk44v6y74hejg/DI4Q4LIoXbqayAme7vQW8QGWceXkPvojtHxFmbLZ55+dB8PDjGTl3YbiowxpWzXK/1RquHr9XsQxIBfn7k7mpoZWKjxbF8be9CTPogQg8gSR5UTwmFrm8tYl5Bg7H0G9U2VCPg6Raw44OV0g4HQ0ZwO/N3Yqp5jb7jSWcWbUodtsUJ2MhzZSOAcd4+OuRqNRZq4lrcnSWU88ZHvWb4pN9Q4vDJyhuxob0fmPvGa017CzxnAy671le00b3HCzIMBo2WRfQg0mCKPtI/dTpIMb/iKz/aG07yxkHPbIPoR/tVz2hkaeGzkC7vGxIA5Hl+dRcctx/h2D0j0/hVJ0RJWZTs/dlIiDsM5+dbDg/FDbzq2rw6s48uhrA8KY4c88npV7aXgjnRX3UjBHrSyxsjG60z6A7POs9uRgjSRz9RVpJCMcqzH0eXyXlioU5OnDHr4Titk6DOMV0YXcTgzKpMrGg9KglgYDbIzVq0Wc+tRGLUnKtTIqo+8C41tketKzSLtq++iXh0SZxjNeaIMPWmAHrlHPT91Na4kU47tT8zRhh86jaHBz5UCo6rjc4G551FPbg/DUoPWlJzv1rQzK1gVJBFNLkKdXT0o6SJXBB50LJAynzFAEbctq8DvUWrum7s5xjK5/EU8EiT0IoAdIpMZ9N6keMTxAGmkgj3p0TrDCzucLGCT6Ab/AJUD7PnL6cuLD/jKOxDBxZoFYeuM/r+Fcw7MgGyvrtsari5CLvzAGce1GfSDx5+K9rOIXpdiXy+/+Y7D7qB4Uhi7MwgnxM7sfTVjP4DHzrz5buX2estNR+gOeI30jyE5RGHoD1NF8MtWe58kiHPoc/60Xa8OdIkVhgsdZHkfL5Dc1IZrezDRrl/EWbH2j0HsKOWqRSjbtkmlLm4ZFbEaeHPn+/0rY9lOEBS90xOW2UHoM1i7P61IdSW7qhOo+EnPuetbLg/aWK1RYZYWUAY2O9S0bR0bW4uPqPDJpObBMKB9pjsAPc4ovs5ZCw4XFCcagNyOp6/jmqHh8r8WuY5pMdzF4o4weR5a28zzwOmc1p4yVTYYFCQpaRPIiN4gQCBuB1rKdojFBw69TA06WKn5Z/WrfinFE4fC0j7+Q9a5rxztDd38kqJkRE5IGwwKckKLJL1BccZteHIQViHj9DqLEfl99Edooh9UkjTGeW3U+VVVnwbiJD3ja1klOdR54omKy4pl3EbXCJkuuckZ/WlQ2zBcHiOSCNtRzRQmBnxGx3cqD7VHxCX6lLLCg0l2OxG4FCWjEMr7kahy+z61VXswbrR3H6Drg3jXED58K6s+R6119rNPNh7Vxr6BwBxi7XUAGh17cj4h/eu24wgz5V0emXxOD1X5gT2YB2c/MVEbM7jWKNbcVEeddFIwsr7iybGcrmoEgkxnTy2NWr7jNCptK60cRqQKYHxnSaiMJ6qasFbS2D16U6jiHI2iODjlT2IX0ocAI/PYcqkY612NBA5d25b8qdhWGwGOo8qjLCNVJzjqaY5Lagp2O496AFntI5RgAGh1tCkojY7Y8Oakti3fDJOM4NTXT6m2G460DBzaSL61WdoWktOAcUkAxptZGB/7TV9bXQmUBtnG3vVf2rhabs9xKNRu1rLgeuk4pPovH+SPgjtJcOvEL4nYnSoPtzq04HxFr3h0dqIgvdnw5+3v+Z238qru3XD57TicqlDiRi35Vddk7I2ds1zKpCqqhQeredcjrgmeg03ko0NyTDEQnikZNClRvk+XqaM4T2Vt+HQf4hx51jVN1hY8vfzNavh/ZY20lrezJ3sihZm22G2QB78/bFVvHuB8T49fhpQIrRDkRkZ1npn09Kwijp5X0BN247N2oVXW4jRs6XEJwcdR6Vc2MnB+OQrPbSRTRtyZeY/tWY7ddi7/AIxPbXNlbd20cYikRZdIIHUbVH2d4DxLgVrBEAgkVyX/AImcqfsit3GNWmZRlk5U1o6Jw2xFnKRHurb1eFH7sbYoLs9DLMqFgSfUdK01zaKlvq2zis0aSZkuJQpMMOqtjlnlmsTx6/4b2fcTzRtdzZBSFdlB6Fv0HpW24nBK7EITg88c657xjsfccXtJo7i6RZ3l70ZjPhPLTz3GMCnFJvYpcuPxH8J7ccZ4yJ3s+G2sywDU8KkhwPMZ51rOzXGrTi9s7Qp3cmfGh+yfKst2S7HzdnjcSrJEZJ1CMy5AC8+WTvV/wnst9WvWvbYGJ3+Mgk6venPj+plFTr5GU+kLs2zzveQRglV1EDnWDstSkMgz0K+dd17SWYj4VdTSAeCB2OfRTXBLa6S2WOWQhATjcbGhbQSrR2b6H7pbfjqlCEEsDRkZOc7EbV3XVkZJzttXCfofuIrjjVpLEUZSjMRgZI8xXdnYVt6X8Wcfqq5aGMedRMaVmFRs9dJzC5yKGlysgYbVMG2qGfmKAQkpBbbbbNKxOAR1ph5DypUOV36UxmvyWiRuo2NSo1QW7ZyhqVSc4qREzDWhX0oeJwIt87bH0NEBvOoJU7udXXGltnXzHnQA0SaSGxuDU7MC6uPhYUOy7uvkcGpY21QlCRqj3HqKAExg5Awc5zU0wF1FJCwJEilD869A2Q3WpYVBc4GCOtAHyl9MHYU2U8VwItUcLtHIccsOwB/L76yvCeJQy9xwvQCe7dskc3HT7t6+nPpP7Ox8R4LxEacGZRpOPtDB/wDqPxr5g4VwSePi9lMyYDyMjMD8BI239a4pw468Hq4p80peT6I4bYpd8G4e0YGHt43z5kqN6nPZ+Mr4uVSdkpWk7NWBkxrWPQ2PMEirQNvyHlvSikyqaM7PwFSCA745YFRW/ZO3UiR4+W/i3JrUFkUZbFAXd+sY9KrikUrZFDYRwAaQABttR9xYGfh7OOajNVVpftPJhVJXOCRWj79I7JlYgBhihJCkmjEm2VnyQOe9Nk4Sku+gHPTFNurp4LubKERK2NXQ5q0s5klQEGooumVa8GjQ7QqPlRcNqsfTFWZVQNXWhJOZOaOIjJ/SZ/y3YvickY8Zi0A/1ED9a+b+LRssSICRjfA5ivo/6RpA/ZiaFhkSyRoB88/pXEz2cn4xxu04VaprmmlihC/5mI/vVRdaMckdWdQ/8O3ZO8u7X/FJdQhE3cxZHNsamIPl0+dfQUvBcjKOcdKb2Q7MWfZXgtjwi1A7u0jClh9t99TfM1osIRgKMV0Qi0jzpStmVk4JMORoaThNyu+K2RjQjGKYbdCdq0tkmJNlcKd4zQ1zBMoBKN91bo2qZ6VBdWK6dWFIzRYaMSFbu/Ep2pikrkEVtV4bGyFdCnO+aHk4RDqOYhjnyp8h0JburKj52xg+9EYw+c1FAFRMYGk75qRhpO24NBJLnWuBzoS4dlfS5xjkfOp1bDetR38ZlhLKPEtADg+thLt5GpAgSVGzhWOD6U0Q93GuRnIAY+dOjJ06G/GgR6DMcmg7YOn+1GRvhgKDfxMHxjWPxFTq4KqeWaBlT2weFeDXLzkiIhc6Rljk4wPXlXDrvshdWvZleLsFt5YZW70YHhX4gT7FcHFdx4zB/inCryU5KtG6wAdcDd/c8h6e9cu+kDjCW/YnjfD7Px3N/cxRWkY5v3yAqB8zWWWKktnThm46RYdjONWvEba4hs7m2nSIo4MMocAOvofMNiryW5xt1rif0WcOXsZ264pYrOrWlxctweMjlNPDF3juPnkf9wrq99daWIBFYtcdHbDJy2S3V+ADkiqK4u5ryUxxc/PypZ3Mx06setS8LktyzRxsGYfERWb2dCaRDxTthZdmOHQq1vcTzkaSkEZdiepxQk/bJrqyFye8WNhqwykMvoRzz6VdXvALe9PfFAW86oOI9mnfUq6tKnzp06HGUQHhvbK34nb3SvDdRbY/jx6dXlir/hFy6Qx6j0HOqKz7OwwTK8uX07gHfFWkk8UAxqC1OxyrpF+bsFKgkus7VTxXuoYzUyTZPiOapMyk6Mv9KPEprWysIYNIeSR3yVzjC4B+9qh/8OPBo+LdsrriMwLmxt2dATnVISFB9wCx+dA/SBfJcdobOzPiEcIyPVixx9yiug/QNwU8IdLsRov+JR3TrjmUSWNV/Ak1UFcjjzy+J2rWQoIyQdzkU5HPwnnTGGk8ulNOAw5jyrrOAnL14nFDsSftGl1kDemBKG3psp1RMOeKYG3r2rOc9aAGxuDGDSSTEAnniokbSGQ9DtTZGxvg0hg0SmSMoSQV5HyqaFjpwdzyNPCqH19TsaaSFYkdaYj0gCMGHL8qkVhKpX5U1cNnPI0zHdvzNABEY0oEY5xtmmyqVYaetPwCuehpMMQPSgBGUlNPVdwaZOW+rkId5fAP8pbb9TUmSMnBPoKp73jvcOIbe1mmlV9QVQeePQE/hSbS7Gk30W19dWfDrMT3LpFaQjBLcgo/MnYY6mvn9b+3k4hxntZxEaIuCWa/UI5BhGlUtFG/qQBjbrnyrqk/ZziPaWcXXaKb6nwy3OpLZW0FvTOcj1JOryC1xz6Yb21k4ldQWsHdWXcxx2VsEKpcsHUFtPRFBbA6nHmazn0dGJVowXajjc3ZM9mYrZyLnh9qOKXBJ3a5unWQg+0SRj/uNdvsuI23aCxteKWbaoLqMSL6Z6H1ByPlXy72j4hP2g43cvM5DSN305HTGwQeuwFbX6HvpAPCL1uzvEJNNtcSZtmY7RynmvoG6evvWc1atG2N06Oy8Yt5YbORojg4rF8B4X2is2uLyC4GZGLd1MuVPt1FbqVmuVA+y1FQ22iMAVgdkZUYy57VdrbbwBbNdsbggZ8+tV0vaXtSwwz2AJJOVf8A0rbX9mswxpwazt3wi7ByoRl9qdnZizQrcUUCdo+0AfDSQN6Kur9Kjvou0HFVzJN9WQbgRLhm9z0FaGzs5EYBkwfbFWQt8DcUrM8s4t6QHwGC4+qI102XC4J86ssqh3YADmT09agYmLZdqwf0pdtV4VZDg1q+bu7AEzA47qI8x6Fvyz50RTbpHLN1tkV3YXPHG/4vS4t2tJLsd0gfxCIFokBH82RnHka7X9ENzHNacDXKhoLW4jwBjYmNv0r54s+GXQ4HwS8XDW0c0kOEP2w+r2PxHeu0/R7I3Brvh5lOnubkxP5dzMpCn/5aN/erg2p7OTKuUbR3Rztsc+9MJFMWTOxByOdOPSu04RCcHFITXiMmvHfGKAEJPMV5TuaXG1MzhsUAMkB1ggetRTZK5FOkk7qVW3Odqa51RFvnSGPJxTUGRmpANqVRgGmISMbkUsoRIy0jBQPtGvSSLChkbkPLr6VQXt7JdSMWxpwQq5xp2/1H5etJuioxssn43HEoWOMyE9ScChz2hnOyQx8s8idtt/xqpfU5KqnLc8z5+n6Y9ahCJISikl/8m5HMDzx03OKi2acEXCdoZtwyxeoZMeXr7/dRY7Qu0YBjLYGMpqyflg1kXAi1Yk1AHmWyo8hsfI9PWnx3a28qidFCMQGJO49dwcHn/sKOTHwQH2i+kG3tZmWPh3Fb+4XknjjgU+ruAMe1cM7b8X4z2n7RXVx3P1q67tYIFhRwkI6aS2/Lmee+2Oddx47xOCOIyWyxzzSDRFoQYBPI+x8vMetN4H2Xg4AI5ZkSa9ljLyzY+2T4gPTBAz5CsJuR04+KXRyTsf8AQm8Nm17xgKk0g/hw43Bx8beo3A8smuZ9oOyYsrjicaAhrZm0EHyORj5Gvq/iMheNhgDHXyFct4v2dhvZ7ssoJlZjn0NZe407ZssakqBvoq7UcT4n2dX/ABI99JCdCyn4nXAwW8z610ay4hFOucgYrH9mOCxcGsjbxDAou4eS3k1xMV8/Koc9mkYUqNTcSoFyCKrppYztyqim4xMq+L7xQb8X7w7uaamjVRNKGi09CagmmUbDFUH+KFQcFjQ099LcAqWwp6DrSckJxKnt32+HAEFtYhXvJlbQ7bpHj06nJ26VzTjvCb0Wdnc33eNPfQi7Ej7s6vnfPutWH0k25/xC1k6L4Sff/atXPZ3Xa7gvZ2zjQStZxC2RwMHSd8E+niIPrW8ZKMUzjmnKTibL6OexXEOLfR6/DbhUXFx9cspGUAhyoV1J9cD8/OuscE7IPc8Mii4lbta3MNubN5QP+qnNcjzU/iKtfo84XHZ9l7S1kWNtChXGxJwoAJxyO2fma0U6LpaMDZRlc+lbxxppSOKWVr4lVw+e4VRa3SOLqEaWlCHRIB9oHlv1HnVmsmrY9ahQd45AGRjIJ6UroyAE71okZMnU5H4U19gSNz5UzU2oD0yfSlLEOBnmKYCq4YZG9NPxZr2Aj7cj+dO2oAhnTUVI5g01R/DIqV+dQnIJz1oGT4p5wKQUFxWfuoO6VsNJz/p6/sUEpWwPiHEEmdVVxo32HP39euPXFAjc6pAqnc4zgKMjfPvnc/LzpQxVsfEeQXO56ee3v/UaQ7AKpQnZ8kYUY2Dn0G+kVmzeq6EfmI3VmLbhQu5574Oyj1bJoG90LCszSCSPpr8YwMDKqzAEct9IFGygONGMs3iEbZywz8cnXHp/vVa941tK7vIWjY6XmXbvDn4EB6fdSGjzy/WYXdCzNENWzGQoOe+jwqNs49BUcLG5hICGRSMYAdi33DHL1PI+dQRXUMVw9rM8SjTqijaTvCAeiouDnI5nriheHzqbuW2QRvpY/wAzDHngEMR755dM0ikhZLCa34gjq8nfgMylicBcbAE8jnO56HbnRMnELgQByNkOcBcAjrg8zt1qfiAMUcNyFkURPlsRLGSud8Abnr+vKjrKP6xBFIHD96MlQ25HUE9AN9qXGyuW7M7eXbTAgA4x51Tm2DyMSBhq01xwlAXEZBCnAwcjHSgn4c0W2Qc865ZI7YSVFJ3YjbYbVFcRB1PnVrc2ZXfFV1xCyrkVk0aplDfxaB71VMd6u7rLbGq6SME5wKRomDZLCnquNzS6NPvTWbfSKQFJxvgUPFnIlXUrDB9PWrTslwu54Q8ad+ZEXZQVwR86JSMMc43o+2QrgjINPk6ozcVdnRuC8XntyjRSsj43IP51rbftMZgguIQScAuhx88VyzgzTGQDetparpQNJnSN9q0xTknSObNji9tG0tb+2uWCRyqGHIHwnPzolh4yjda58twVLOSTpB3PMdSffp8qsbTjd/DCkjn+H8MaNuT677gV3LJ9nA8X0alsqxU7kU9hqQN1FVEPaa3uFXv4+6cHmu4Iq3hmimUNE6uhGxBrRST6M3FrsRwHFeXfakZu6J1bA8qdzGRTJGSDAFQnp5ip3GQMedRPGQAehoHZOuaqb2Rp5iVBGk/a2GnzxjPT86tJX0Rk9TsKqJWVXICksDsF55yeX3fr7zIqCBzGRs4Yls+HkfUe3mfQAUyRidKgB2Y6lBHxH+Y+SjoKmKahlQDrHhHRwP8A6D8Tmh5groz6jIJDjV9qY/yjyUefpUGgLKyAMxZ5Ii+CV+O4fyHp+FVXEHlWVm1BLhEy0h+CyTyH+arKZnAdVdUZF0yS4/h2y/yr5t7b/nVFdmMxxRCBmR3/AOVt5Dhp3/8AVk8l/CgpA1vcOb2zNuk6QuxjUKo76cEE6mY7qm2T7jrUVvK8/HbpEWaTS4yraGbVt9nn5YK78s1VwXHfcYtUSI8Qk7095cM4VPArEiMHmoOxHl5UvAruJrm7leS2YmQhRdIwcY2xr9NxnNTZdGzKK1pcRoisSp1BImJ5dS24+W+PcUnZy+WWwiilYSyZOU1gk9B6geh6CmcOaaSzdzDcOoJwTcaox7Hn7Z5beVVvBJJorm4VYSyxyEfAJCuTyI+Lqdwd852xTJ7Rp7pT3RkAdtBwxCgIB5DrtQMqhjnY0Z36Sk4IJjzjvPgjX9ev73oVIlV3VHDrzVvMGs8kfJthl4BzbCTbHpVTxThxjRtOcc9qv+7K7+VD3h1RlSM1zuJ1JnO7pHDkb0N3DOfhNai54aXkzg86ReGKF3UVHE15oyF0hhHWoIIWYk7mtJecMWSTUw9hSWvCUV886mirRVWlmxbSdhV/w/g/e6STtRlvYRKuWAyKsoJli+EDGPKnRnKVhFhY29kATufKi7q7zHhSi6jjL7Aemeh9ar4le5uBqXwDdvXyX51N/wBWZW1A7nScZzjow5Z9fzrXFHycuWXglSLOGkR2QMCyaS2rB5Hzx/8A17VMuJWLHwg5OXUqT75Ufv3oRx3+hBEMxjSGVVcH3Ibb5/7reXycPsw3eadWwMYIJzy2OxA2yN+VbmFBkl3HGTGkJBGxLcyeo9/T86Ks7ue2bWr92RzBPP5VW8OtHMfezKD4cEJ41X02zlfQjarBVymVIwuRnPhHPr059QPeqQnRorPjUF2BFcqI2bYN0Jo9fApU9OR86yYjGrUcgc/LrsfbfnuPWrfhXEAQIJidvhJ/I1pGX2c84VtFrEQy16f/AKEo6aaY6EEMDgHpTiQ0Tg7HGPxrQzBb24Ge7AzuMj323HP0+YoJnVcaV7wuuQDsGHqeQG2GPXGBSs2sEvyIJIJ2A5Nk88bZz15DrTCpBPgXxHU2vC5xyLeQ8lFZs3SojdtYyVdkkPMAgzn0HRBQ80jEuWYLpJEkyjaIfyJ/m/e9SyvpzMDKgk8JcD+JN6KPsrULh+9VCitKuTHADhIRz1MepHX8aRRXzZ/hD6ssjkZgtW2WNf53Pmaz/FJFKyuZ2lBOLi6TZpWPKGLPIef7FaOcKIZJO+Jgz/zEy/Fcv0ROuP37Zvjl13WsZENxCmoLGPBYp1PrIfzNIpGRvoF/4gluJLaCXurQaYVkOqJmONCjlgAAHmSSeVWvCWk4fw4Gee9jLDUe/hV03PI9eo/YrOPcW9zxQWz/AFeJIlHglDEoCSfEy/a6nyz03rTAAIv1eCaNNj3lm/fIcjqpweXmBy8qgsvOAvbyWEjgcLJYndJTpx/Tnbl+NV9nIkV5Kkot1UnK945UDP8AJIOnoeW9WVpL9X4csZnVMnfVYFTnz5b8/wB8qpe8YXcphOQ+5a0IcH+qM/p+tUCNTaXKyq21xMisDpMiyBj0XUDjpkg+dGvcmRmJzJLGCzhB4I1/lz++VZe1u0OruvqJdyNRDGBgB5g7bDPptVrDKQQqxlFDHRCh3c45k+WP3jFPtUJadote/jYZzkHrUE5RuR3qsaZoZWhByq/D12/05U4zNyrletHYtqyZ1XJONqgdUxgbYpNTHnnFOKlhmkMrbi2DMcVEI2iGcZqylAHKodBZhttSaKsFHeMNsipoVkBAxnPKjY4VyCR8qLijjtld2CmTG4blp6getNRtkTnxIQwWMwopOjchttZ8wf3tSQgP3mkGVdsEAHHrhtt8g+wFKSk7LDmTuB4i6DcDnoOOWQd/8vlUbsouJe8eJcksBKm436IOQ3x+tdCWqORuyRkwhJjPeOdI1RRhj58uf73qKdWl4pbqVk/goXCtP4ix2yDyzjIIpHOqRUhjLgAEhV7pQPUnfG/XnUCzk3rwrFBMdKkwhiGA/mG379KBF6jZZVKhpMYCyrok+TDY0RCRI+ou2U/mOmVduh5MKrbV1n8IxIgGGhmbxJ7H/ce1FJL9ZOkGVYVOxOSYm9c74/3qiQsuG8CKTnLLo2z56f5W57dfKmjK6XyucZyowPcenP2Ix1GJBHpBAjHmyr9r/Onl++dK8Y0ljpONztgb9fY9dueDQIveFXf1630MT3iDrzIowrlcY31D8xWZsLl7O6WQatjuD+Pzzke+qtY+HhR4xqJYMo8+taxdnPKNMpcjpgnGol9sbfE2/QchTCxLAaWfUcrG3xSnPxseg8hTjIUGJMPo8RVyRvjdpDnAIwdudQyTaFOqRljkPjkxhpjn4VzzFSbDW0l5JDKqnGmW5I2A/lT970NLoWFFeGQRucxwIcvOf83kKmluNAjDQkyE6YbUcs7bkfj61G6uJXXUrTlf49y2yxL5D8vy64QyvmLiYAd016i6URN4rJerHpnFY3tBJ3cb90THHkyRDmz4/wDOfPmfhHnWuu3jeEgRlLJn0xxIMPdt6+Q/KsP21uCjsruNYAd2XABYDp/lA8I+ZqWaQW6MZwPiDycYun7+W3UOUUd0JE2wD7nOcnzFbaxgF3Kk8MVvcuCMvZS9zJnyKn5fnvtXPewscxtRcu9zbiVmlZ4jqQ5Oc/j+PniuiWKRyAOxsLuRP/V/gyD1J5eVShyey8neW2hxKeMQpkbsA49/wH755a4nSefObec8+XcSD2PLb9K0N1qghCi34hHjbVFPrUH09OX75ZqeZJ59LThx/LcxEEdOa/vamwiW9ssrW+idrkK22LmASp7ZG/3elWsc4mJmga1iUqqPKjboNJwAM5GcHGfLnVVweJUQGELG2OVve6PwYbf6+eas1f6kJO9MgLFctdRcgvTWuRjJ5chyppiY+UI8cckarHjPdpvqdceI+XTP9uVOR1KjBBBGc1MshE8gZ+8kOO8dd0ROmM+ef3yqrdu4nKKCsbjXHkY2PSsssfJvhnfxLAFcj0pWkAHOq9WbmTStN61kdFBTMG2xTlBADJgeefLrQizgbk0ZCzIFkdVOV1pGTjUP5iPL0601smTpbCIlaMCYAagCyBvTmTVdc37sqKio+qTMQJyGPMq2M4AG5PTb1r19fYDHv8BXyrZBbJx4cHOWJIwMdQTtQhZ4GImFuruQRBLkmJfF4cdSeZPM58hWqVHLKXJ2yWRXiYRvrwMEu0/dhmbBYgcwM/py2FTxOWZu47w+LH8GLn/3Nuf7HpQtqJJGRlUOx+1FBqyf6m+7anvGrtmYoG3P/MTZP/xHzOPfnVkskGZu8PcvLpfbXLlQfU9Tj5AbZFUK30bcZuI5ETTEqnVbtl4iV2JHr+H5288Q7nWbZGAGdUjCNcei9BnqfXrXOeC8QFz22vWDxIolISS2bKgKdyrdRtkqfcZoF4Oqx3DNEsbN38b/ABTRph0O2NQH7zV3bZAVBp71h4HHwSjyPv8Avfas9wt5ZblZtkuHGpCDmOYeWP38jV3bkBMnMcLnBQ/+TJ/b19fQ0EMsolB0lWVFJ8O+8b55ex/XrUhUEKVU4JJCdB/Mg/TlUcbHxPJyzpmHLH+Yfv8AtRONmLk+EfxSNiPJx+xTECtGD4sggD5e/wAx+TdTWk4PK0tnGhJDxvj8KpSm+QCTz8Ocb8iPQnceR9DVnwOQLNoJwHGRtgZH5fnzq4umRNaP/9k=" alt="Sunny">
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-tags" style="color:#8B4513;">諮詢 · 原生家庭</div>
+        <div class="t-quote-mark">"</div>
+        <div class="t-text">我以為我的問題是感情，談了幾次都用同一種方式收場。但連天線在一次對話裡讓我看見，<span class="hl">根源是我從小就決定「我不值得被愛」</span>。那個決定，從很早一次不被回應的時刻開始，後來變成我每一段關係裡反覆驗證的劇本。那一刻我哭了，但也鬆了——原來不是我不夠好，是那套很舊的代碼一直在運作。</div>
+        <div class="t-meta">
+          <div><div class="t-name">Patty</div><div class="t-info">國小老師 · 34歲</div></div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-tags" style="color:#7A3B6E;">小課 · 情緒清理</div>
+        <div class="t-quote-mark">"</div>
+        <div class="t-text">我說我很樂觀，朋友都說我抗壓性強。但她看見的是<span class="hl">「我封閉我自己」</span>，那是我從來沒有承認過的真相，連我自己都被自己騙了那麼多年。樂觀其實是一種防衛，是讓自己不用真的去感覺。上完課之後，那層防衛慢慢鬆開，我第一次感覺到真正的輕鬆，不是裝出來的好，是真的好。</div>
+        <div class="t-meta">
+          <div><div class="t-name">張小姐</div><div class="t-info">· 36歲</div></div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-tags" style="color:#2E5E4E;">大課 · 自我整合</div>
+        <div class="t-quote-mark">"</div>
+        <div class="t-text">我走過很多課程，哭過很多次，但這是第一次<span class="hl">真正動到最底層的東西</span>。以前的課程給我的是當下的感動，三天後又回到原點。這次不一樣，是真的看見了那個一直在重演的模式，不需要刻意提醒自己要改變，改變就自然發生了。對一個走了很多路的人來說，這種不用硬撐的改變，特別珍貴。</div>
+        <div class="t-meta">
+          <div><div class="t-name">廖秀娥</div><div class="t-info">· 55歲</div></div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-tags" style="color:#7A5C1E;">諮詢 · 金錢關係</div>
+        <div class="t-quote-mark">"</div>
+        <div class="t-text">我一直以為自己是悲觀的人，對錢很小心，存不下來也不敢花。但她說<span class="hl">「你的隱藏信念是：我是賭徒」</span>。我當場愣住了，因為那才是真的——我一直在用很賭博的心態對待金錢，只是換了一個悲觀的外殼包裝。看見那個信念之後，我才知道，問題從來不是我不夠謹慎，是我從來沒看清楚自己在玩什麼遊戲。那個看見，慢慢改變了我和金錢的關係。</div>
+        <div class="t-meta">
+          <div><div class="t-name">盧小鳳</div><div class="t-info">護理士 · 54歲</div></div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-tags" style="color:#4A5E8B;">小課 · 童年創傷</div>
+        <div class="t-quote-mark">"</div>
+        <div class="t-text">我說我想太多、很內耗，每次跟人相處完都要花很久時間消化。但連天線讓我看見，<span class="hl">那背後是自卑，是從來沒有被看見的傷</span>。我一直以為是我太敏感，後來才知道，是那個傷一直在用想太多的方式提醒我它還在。課後我第一次感覺到自己有價值，不是因為做了什麼，是因為終於有人看懂那個一直藏起來的部分。</div>
+        <div class="t-meta">
+          <div><div class="t-name">小光</div><div class="t-info">刺青師 · 35歲</div></div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-tags" style="color:#6B3A7A;">諮詢 · 方向迷失</div>
+        <div class="t-quote-mark">"</div>
+        <div class="t-text">我不知道自己要什麼，茫然了很久，換了好幾個方向，每一個都做不久。一次諮詢之後，<span class="hl">我知道問題不是找不到方向，是我從來沒有真正問過自己想要什麼</span>——一直都是在問別人覺得我該往哪走。方向感沒有立刻出現，但我終於知道，自己一直問錯了問題。</div>
+        <div class="t-meta">
+          <div><div class="t-name">想想</div><div class="t-info">· 43歲</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brand">連<span>天</span>線</div>
+    <div class="footer-tagline">你不是迷路，你是準備醒來。</div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">首頁</a></li>
+      <li><a onclick="showPage('services')">服務</a></li>
+      <li><a onclick="openContact(event)">聯絡</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 連天線 · 意識內在工程溝通</div>
+  </footer>
+</div>
+
+<!-- ══ BLOG ══════════════════════════════════════════ -->
+<div class="page" id="page-blog">
+  <section class="about-hero">
+    <div class="page-hero-eyebrow">Blog · 部落格</div>
+    <div class="page-hero-title">看見，是一切的開始</div>
+    <div class="page-hero-sub">潛意識 · 人格模式 · 內在工程 · 療癒</div>
+  </section>
+
+  <div class="blog-body">
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-card-header">
+          <div class="bc-cat">潛意識</div>
+          <div class="bc-title">你的隱藏信念，正在決定你的每一個選擇</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="bc-excerpt">每個人都有一句「從來沒說出口的話」。它藏在你的每一個反應、每一個決定、每一次逃避的背後。今天我們來看，那句話是怎麼寫進去的……</div>
+          <div class="bc-footer">
+            <div class="bc-date">2021 · 06</div>
+            <div class="bc-read">閱讀更多 →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-header">
+          <div class="bc-cat">人格模式</div>
+          <div class="bc-title">「我很可憐」——最常見的潛意識防衛策略</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="bc-excerpt">在我服務過的客戶中，「我很可憐」是最常出現的隱藏信念。這不是真的在說自己可憐，而是一種很早就學會的，用來換取愛與關注的策略……</div>
+          <div class="bc-footer">
+            <div class="bc-date">2022 · 03</div>
+            <div class="bc-read">閱讀更多 →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-header">
+          <div class="bc-cat">原生家庭</div>
+          <div class="bc-title">上一代的傷，為什麼會傳到你這裡？</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="bc-excerpt">你有沒有發現，你和父母的關係，跟你在感情裡的模式，幾乎是一樣的？這不是巧合，這是潛意識在用它熟悉的代碼運作。小時候學會的那套求生方式，會被悄悄帶進每一段新的關係裡，繼續重演，直到你真正看見它。看見之後，那段關係不一定會改變，但你和它的距離，會開始不一樣……</div>
+          <div class="bc-footer">
+            <div class="bc-date">2023 · 09</div>
+            <div class="bc-read">閱讀更多 →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-header">
+          <div class="bc-cat">內在工程</div>
+          <div class="bc-title">為什麼感動不等於改變？</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="bc-excerpt">很多人上完課之後哭得很深，感覺很震撼，但三個月後發現自己還在原地。那是因為感動發生在意識層，但代碼還沒有動過……</div>
+          <div class="bc-footer">
+            <div class="bc-date">2024 · 01</div>
+            <div class="bc-read">閱讀更多 →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-header">
+          <div class="bc-cat">迴避型人格</div>
+          <div class="bc-title">你不是內向，你是在逃避被看見</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="bc-excerpt">迴避不是性格，是策略。是在某個時刻，你學會了「如果我不靠近，就不會受傷」。但這個策略的代價，是你也沒辦法真正被愛到……</div>
+          <div class="bc-footer">
+            <div class="bc-date">2025 · 08</div>
+            <div class="bc-read">閱讀更多 →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-header">
+          <div class="bc-cat">豐盛意識</div>
+          <div class="bc-title">為什麼努力工作，但和金錢的關係就是不對？</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="bc-excerpt">金錢不只是數字，它是你和「自己值得」這件事的關係的鏡子。當你覺得自己不配，豐盛就算來了，也會找到方式離開……</div>
+          <div class="bc-footer">
+            <div class="bc-date">2026 · 04</div>
+            <div class="bc-read">閱讀更多 →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-header">
+          <div class="bc-cat">內在小孩</div>
+          <div class="bc-title">你需要看見內在小孩的傷口，才有機會療癒</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="bc-excerpt">很多人以為長大就會自動好。但有些反應、有些害怕，從來不是現在的你在感受的，是那個還沒被照顧到的小孩，一直在用你的身體說話。看見他，不是回到過去，是讓他知道，現在有人在了……</div>
+          <div class="bc-footer">
+            <div class="bc-date">2025 · 08</div>
+            <div class="bc-read">閱讀更多 →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-header">
+          <div class="bc-cat">關係模式</div>
+          <div class="bc-title">為什麼你總是吸引同一種人？</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="bc-excerpt">換了一個又一個對象，但相處的方式、受傷的點，好像都差不多。這不是運氣不好，是潛意識在用熟悉的劇本，找熟悉的角色。看懂這個劇本之後，你才有機會，選一個不一樣的故事……</div>
+          <div class="bc-footer">
+            <div class="bc-date">2026 · 01</div>
+            <div class="bc-read">閱讀更多 →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brand">連<span>天</span>線</div>
+    <div class="footer-tagline">你不是迷路，你是準備醒來。</div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">首頁</a></li>
+      <li><a onclick="showPage('services')">服務</a></li>
+      <li><a onclick="openContact(event)">聯絡</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 連天線 · 意識內在工程溝通</div>
+  </footer>
+</div>
+
+<!-- ══ CONTACT ══════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <section style="background:#1E0810;padding:80px 24px;text-align:center;min-height:200px;">
+    <div class="page-hero-eyebrow">Contact · 聯絡我</div>
+    <div class="page-hero-title">準備好了，找我</div>
+    <div class="page-hero-sub">不需要準備好所有答案，只需要準備好面對自己</div>
+  </section>
+
+  <div class="contact-body" style="opacity:1 !important;visibility:visible !important;display:block !important;">
+    <div class="contact-intro">
+      你不需要先「準備好」，<br>
+      你只需要<span class="key">準備好回到自己</span>。<br>
+      第一步，就是把這個訊息送出去。
+    </div>
+
+    <div class="contact-options">
+      <div class="contact-opt">
+        <div class="co-icon">💬</div>
+        <div class="co-name">Line 私訊</div>
+        <div class="co-desc">ID：ab1221zzr<br>傳「我準備好了」</div>
+      </div>
+      <div class="contact-opt">
+        <div class="co-icon">📱</div>
+        <div class="co-name">Instagram</div>
+        <div class="co-desc"><a href="https://www.instagram.com/?__pwa=1" target="_blank" style="color:var(--rose);text-decoration:none;">@連天線</a><br>私訊預約諮詢</div>
+      </div>
+      <div class="contact-opt">
+        <div class="co-icon">✉️</div>
+        <div class="co-name">Email</div>
+        <div class="co-desc">nono0955200790@gamil.com<br>歡迎來信</div>
+      </div>
+      <div class="contact-opt">
+        <div class="co-icon">📅</div>
+        <div class="co-name">預約諮詢</div>
+        <div class="co-desc">個人諮詢<br>私訊預約時段</div>
+      </div>
+    </div>
+
+    <div class="contact-note">
+      諮詢前不需要整理好你的問題。<br>
+      你只需要帶著<span class="g">最困擾你的那件事</span>來。<br>
+      其餘的，讓連天線帶你看見。
+    </div>
+  </div>
+
+  <section style="background:var(--ink);padding:80px 48px;text-align:center;">
+    <div class="big-quote-text reveal" style="color:var(--cream);max-width:600px;margin:0 auto;">
+      你不是迷路。<br>你是<span class="hl">準備醒來</span>。✦
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">連<span>天</span>線</div>
+    <div class="footer-tagline">你不是迷路，你是準備醒來。</div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">首頁</a></li>
+      <li><a onclick="showPage('about')">關於我</a></li>
+      <li><a onclick="showPage('services')">服務</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 連天線 · 意識內在工程溝通</div>
+  </footer>
+</div>
+
+<script>
+function showPage(name) {
+  var pages = ['home','about','services','testimonials','blog','contact'];
+  pages.forEach(function(p) {
+    var el = document.getElementById('page-' + p);
+    var nav = document.getElementById('nav-' + p);
+    if (el) el.style.display = (p === name) ? 'block' : 'none';
+    if (nav) {
+      nav.classList.remove('active');
+      if (p === name) nav.classList.add('active');
+    }
+  });
+  window.scrollTo(0, 0);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  showPage('home');
+});
+
+function openContact(e) {
+  if (e) e.stopPropagation();
+  var modal = document.getElementById('contactModal');
+  if (modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeContact() {
+  var modal = document.getElementById('contactModal');
+  if (modal) modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Close on overlay click
+document.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById('contactModal');
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) closeContact();
+    });
+  }
+});
+
+</script>
+
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeContact()">✕</button>
+    <div class="modal-eyebrow">Contact · 聯絡我</div>
+    <div class="modal-title">準備好了，找我</div>
+    <div class="modal-sub">不需要整理好問題，帶著最困擾你的事來就好。</div>
+    <div class="modal-grid">
+      <div class="modal-opt">
+        <div class="modal-opt-icon">💬</div>
+        <div class="modal-opt-name">Line 私訊</div>
+        <div class="modal-opt-desc">ID：ab1221zzr<br>傳「我準備好了」</div>
+      </div>
+      <div class="modal-opt">
+        <div class="modal-opt-icon">📱</div>
+        <div class="modal-opt-name">Instagram</div>
+        <div class="modal-opt-desc">@連天線<br>私訊預約諮詢</div>
+      </div>
+      <div class="modal-opt">
+        <div class="modal-opt-icon">✉️</div>
+        <div class="modal-opt-name">Email</div>
+        <div class="modal-opt-desc">nono0955200790@gmail.com</div>
+      </div>
+      <div class="modal-opt">
+        <div class="modal-opt-icon">📅</div>
+        <div class="modal-opt-name">預約諮詢</div>
+        <div class="modal-opt-desc">個人諮詢<br>私訊預約時段</div>
+      </div>
+    </div>
+    <div class="modal-note">
+      連天線陪你看見<span>那個說不清楚、但一直在影響你的東西</span>。
+    </div>
+  </div>
+</div>
+</body>
+</html>
